@@ -29,6 +29,7 @@ class TabBarBottom extends React.PureComponent {
     showIcon: true,
     allowFontScaling: true,
     adaptive: isIOS11,
+    forceInset: { bottom: 'always', top: 'never' },
   };
 
   _renderLabel = scene => {
@@ -215,6 +216,7 @@ class TabBarBottom extends React.PureComponent {
       animateStyle,
       tabStyle,
       isLandscape,
+      forceInset,
     } = this.props;
     const { routes } = navigation.state;
     const previousScene = routes[navigation.state.index];
@@ -233,7 +235,7 @@ class TabBarBottom extends React.PureComponent {
       <Animated.View style={animateStyle}>
         <SafeAreaView
           style={tabBarStyle}
-          forceInset={{ bottom: 'always', top: 'never' }}
+          forceInset={forceInset}
         >
           {routes.map((route, index) => {
             const focused = index === navigation.state.index;
